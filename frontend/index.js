@@ -42,3 +42,20 @@ function randomUser(){
         console.log("error occured"+err);
     })
 }
+function myRandomUser(data){
+     fetch("https://randomuser.me/api")
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        var userName=document.getElementById("user-name");
+        var userGender=document.getElementById("user-gender");
+        var userImage=document.getElementById("user-image");
+        userName.innerHTML=data.name;
+        userGender.innerHTML=data.gender;
+        userImage.src=data.image;
+    })
+    .catch(function(err){
+        console.log("error occured"+err);
+    })
+}
