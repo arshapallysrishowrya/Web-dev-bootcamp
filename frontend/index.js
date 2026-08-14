@@ -1,41 +1,16 @@
 // alert("welcome to web bootcamp");
 var users=[
-    /*{
+    {
       "name":"John doe",
       "gender":"Male",
       "image":"john.png"
     },
     {
-        "name":"Jane doe",
+      "name":"Jane doe",
       "gender":"Female",
       "image":"jane.png"
 
     },
-    // {
-        // "name":"meghana",
-        // "gender":"female",
-        // "image":"WhatsApp Image 2026-08-13 at 10.32.14 PM.jpeg"
-    // },
-    // {
-        //  "name":"chandrika",
-        //  "gender":"female",
-        //  "image":"WhatsApp Image 2026-08-13 at 10.40.25 PM.jpeg"
-    // },
-     {
-         "name":"baddiescrew",
-         "gender":"female",
-         "image":"WhatsApp Image 2026-08-13 at 10.48.30 PM.jpeg"
-     }*/
-    {
-        "name":"varsha",
-        "gender":"female",
-        "image":"varsha.jpeg"
-    },
-    {
-        "name":"showrya",
-        "gender":"female",
-        "image":"showrya.jpeg"
-    }
 ]
 var curId=0;
 function toggleUser(){
@@ -46,4 +21,24 @@ function toggleUser(){
     userName.innerHTML=users[curId].name;
     userGender.innerHTML=users[curId].gender;
     userImage.src=users[curId].image;
+}
+function randomUser(){
+    fetch("https://randomuser.me/api")
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(data){
+        var userName=document.getElementById("user-name");
+        var userGender=document.getElementById("user-gender");
+        var userImage=document.getElementById("user-image");
+        var newUserName=data.results[0].name.first+""+data.results[0].name.last;
+        var newUserGender=data.results[0].gender;
+        var newUserImage=data.results[0].picture.large;
+        userName.innerHTML=newUserName;
+        userGender.innerHTML=newUserGender;
+        userImage.src=newUserImage;
+    })
+    .catch(function(err){
+        console.log("error occured"+err);
+    })
 }
